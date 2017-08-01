@@ -10,9 +10,11 @@
 
 @implementation Weather
 
+
 - (instancetype)initWithWeatherDescription:(NSString *)weatherDescription
                                     iconID:(NSString *)iconID
                                 temprature:(Temprature *)temprature{
+    
     
     self = [super init];
     
@@ -24,7 +26,7 @@
     }
     
     return self;
+    
 }
-
 
 @end

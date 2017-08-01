@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
 #import "Weather.h"
 #import "WeatherNetworkManager.h"
 

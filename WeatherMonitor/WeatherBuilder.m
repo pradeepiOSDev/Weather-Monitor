@@ -7,7 +7,6 @@
 //
 
 #import "WeatherBuilder.h"
-#import "WeatherNetworkManager.h"
 #import "Temprature.h"
 #import "Weather.h"
 
@@ -30,18 +29,33 @@
             
             for (NSDictionary *dictionaryFromListArrayFromData in listArrayFromData) {
                 
+                
+[NSString stringWithFormat:@"%f", [dictionaryFromListArrayFromData[@"main"][@"temp"] floatValue]];
+                
+                
                 // temprature
-                NSString *currentTemp = dictionaryFromListArrayFromData[@"main"][@"temp"];
-                NSString *minimumTemp = dictionaryFromListArrayFromData[@"main"][@"temp_min"];
-                NSString *maximumTemp = dictionaryFromListArrayFromData[@"main"][@"temp_max"];
+                NSString *currentTemp = [NSString stringWithFormat:@"%.1f", [dictionaryFromListArrayFromData[@"main"][@"temp"] floatValue] -272.15];
+                
+                NSString *minimumTemp = [NSString stringWithFormat:@"%.1f", [dictionaryFromListArrayFromData[@"main"][@"temp_min"] floatValue]-272.15];
+              
+                NSString *maximumTemp = [NSString stringWithFormat:@"%.1f", [dictionaryFromListArrayFromData[@"main"][@"temp_max"] floatValue]-272.15];
                 
                 // weather
                 NSString *weatherDescription = dictionaryFromListArrayFromData[@"weather"][0][@"description"];
                 NSString *weatherIconID = dictionaryFromListArrayFromData[@"weather"][0][@"icon"];
                 
+                //Downloading Image
+
+                
+                
                 Temprature *temp = [[Temprature alloc]initWithCurrentTemprature:currentTemp maxTemprature:maximumTemp minTemprature:minimumTemp];
 
                 Weather *weather = [[Weather alloc]initWithWeatherDescription:weatherDescription iconID:weatherIconID temprature:temp];
+                
+                
+                NSString *iconID = [NSString stringWithFormat:@"http://openweathermap.org/img/w/%@.png", weatherIconID];
+                NSURL *imageUrl = [NSURL URLWithString:iconID];
+                weather.weatherIcon = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
                 
                 [weatherArray addObject:weather];
             }

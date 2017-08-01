@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Temprature.h"
 
 @interface Weather : NSObject
 
 @property(strong,nonatomic)NSString *weatherDescription;
 @property(strong,nonatomic)NSString *iconID;
+@property(strong,nonatomic)UIImage *weatherIcon;
 @property(strong,nonatomic)Temprature *temprature;
 
 

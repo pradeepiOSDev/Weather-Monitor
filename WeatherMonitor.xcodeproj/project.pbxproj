@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6800F381F30D86E001DA662 /* WeatherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6800F371F30D86E001DA662 /* WeatherCell.m */; };
 		D6FC15851F2F93CB0077C5EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC15841F2F93CB0077C5EA /* main.m */; };
 		D6FC15881F2F93CB0077C5EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC15871F2F93CB0077C5EA /* AppDelegate.m */; };
 		D6FC158B1F2F93CB0077C5EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC158A1F2F93CB0077C5EA /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D6800F361F30D86E001DA662 /* WeatherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherCell.h; sourceTree = "<group>"; };
+		D6800F371F30D86E001DA662 /* WeatherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherCell.m; sourceTree = "<group>"; };
 		D6FC15801F2F93CB0077C5EA /* WeatherMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FC15841F2F93CB0077C5EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6FC15861F2F93CB0077C5EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D6800F351F30D851001DA662 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D6800F361F30D86E001DA662 /* WeatherCell.h */,
+				D6800F371F30D86E001DA662 /* WeatherCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		D6FC15771F2F93CB0077C5EA = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +82,7 @@
 		D6FC15821F2F93CB0077C5EA /* WeatherMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				D6800F351F30D851001DA662 /* View */,
 				D6FC159A1F2F941B0077C5EA /* AppDelegate */,
 				D6FC159C1F2F94420077C5EA /* Resources */,
 				D6FC159D1F2F94580077C5EA /* NetworkManager */,
@@ -219,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6800F381F30D86E001DA662 /* WeatherCell.m in Sources */,
 				D6FC15AB1F2FF3B00077C5EA /* Temprature.m in Sources */,
 				D6FC15A81F2FF0EF0077C5EA /* Weather.m in Sources */,
 				D6FC158B1F2F93CB0077C5EA /* ViewController.m in Sources */,
@@ -386,6 +400,7 @@
 				D6FC15991F2F93CB0077C5EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
