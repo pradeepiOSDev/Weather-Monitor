@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Weather.h"
+#import "WeatherNetworkManager.h"
 
 @interface WeatherBuilder : NSObject
 
++ (void)buildWeatherObjectsWithSuccessBlock:(void(^)(NSArray *weatherDictionary))sucess failureBlock:(void (^)(NSError *error))failureBlock;
 
-- (void)getFiveDayForecast:(NSString *)cityName
-               sucessBlock:(void (^)(NSDictionary *responce))sucess
-              failureBlock:(void (^)(NSError *error))failure;
 
 @end

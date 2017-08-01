@@ -7,39 +7,57 @@
 //
 
 #import "WeatherBuilder.h"
+#import "WeatherNetworkManager.h"
+#import "Temprature.h"
+#import "Weather.h"
 
 @implementation WeatherBuilder
 
-static NSString *url = @"http://samples.openweathermap.org/data/2.5/forecast?q=London,us&&appid=2ec5676120395f6417a73e7e10c50c3b";
 
-
-- (void)getFiveDayForecast:(NSString *)cityName
-               sucessBlock:(void (^)(NSDictionary *responce))sucess
-              failureBlock:(void (^)(NSError *error))failure{
-
-    // Default Inizializations
++ (void)buildWeatherObjectsWithSuccessBlock:(void(^)(NSArray *weatherDictionary))sucess failureBlock:(void (^)(NSError *error))failureBlock{
     
-    NSURL *urlForOpenWeather = [NSURL URLWithString:url];
-    NSURLRequest *requestForData = [NSURLRequest requestWithURL:urlForOpenWeather];
-    NSURLSessionConfiguration *configureService = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configureService];
+    //calling Weather Network Manager
     
-    
-    NSURLSessionDataTask *getDataFromOpenWeather = [session dataTaskWithRequest:requestForData completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    [WeatherNetworkManager getFiveDayForecast:@"" sucessBlock:^(NSDictionary *data) {
         
-        if(error){
-            failure(error);
-        }
-        else{
+       // NSLog(@"%@", data);
+        
+        NSMutableArray *weatherArray = [NSMutableArray array];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSDictionary *weatherData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSArray *listArrayFromData = data[@"list"];
             
-            sucess(weatherData);
-        }
-    }];
-    
-    [getDataFromOpenWeather resume];
-    
+            for (NSDictionary *dictionaryFromListArrayFromData in listArrayFromData) {
+                
+                // temprature
+                NSString *currentTemp = dictionaryFromListArrayFromData[@"main"][@"temp"];
+                NSString *minimumTemp = dictionaryFromListArrayFromData[@"main"][@"temp_min"];
+                NSString *maximumTemp = dictionaryFromListArrayFromData[@"main"][@"temp_max"];
+                
+                // weather
+                NSString *weatherDescription = dictionaryFromListArrayFromData[@"weather"][0][@"description"];
+                NSString *weatherIconID = dictionaryFromListArrayFromData[@"weather"][0][@"icon"];
+                
+                Temprature *temp = [[Temprature alloc]initWithCurrentTemprature:currentTemp maxTemprature:maximumTemp minTemprature:minimumTemp];
+
+                Weather *weather = [[Weather alloc]initWithWeatherDescription:weatherDescription iconID:weatherIconID temprature:temp];
+                
+                [weatherArray addObject:weather];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                 sucess(weatherArray);
+             });
+      });
+
+    }failureBlock:^(NSError *error) {
+        
+        failureBlock(error);
+  }];
+
 }
+
 
 @end

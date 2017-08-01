@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WeatherNetworkManager.h"
 #import "WeatherBuilder.h"
 
 @interface ViewController ()
@@ -17,21 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
-    NSString *city = @"Chennai";
     
-    WeatherBuilder *instance = [[WeatherBuilder alloc]init];
-    
-    [instance getFiveDayForecast:city
-                     sucessBlock:^(NSDictionary *responce) {
-                         
-                        // NSLog(@"%@", responce);
-                         
-                   }failureBlock:^(NSError *error) {
+    // calling Weather Builder
+    [WeatherBuilder buildWeatherObjectsWithSuccessBlock:^(NSArray *weatherArray) {
         
-                     //  NSLog(@"%@", error);
-            }];
+        NSLog(@"%@", weatherArray);
+        
+    } failureBlock:^(NSError *error) {
+        
+        NSLog(@"%@", error.localizedDescription);
+    }];
     
 }
 

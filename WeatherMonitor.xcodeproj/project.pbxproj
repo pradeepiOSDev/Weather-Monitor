@@ -13,7 +13,10 @@
 		D6FC158E1F2F93CB0077C5EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FC158C1F2F93CB0077C5EA /* Main.storyboard */; };
 		D6FC15901F2F93CB0077C5EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6FC158F1F2F93CB0077C5EA /* Assets.xcassets */; };
 		D6FC15931F2F93CB0077C5EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FC15911F2F93CB0077C5EA /* LaunchScreen.storyboard */; };
-		D6FC15A01F2F99210077C5EA /* WeatherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC159F1F2F99210077C5EA /* WeatherBuilder.m */; };
+		D6FC15A01F2F99210077C5EA /* WeatherNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC159F1F2F99210077C5EA /* WeatherNetworkManager.m */; };
+		D6FC15A51F2FEEDE0077C5EA /* WeatherBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC15A41F2FEEDE0077C5EA /* WeatherBuilder.m */; };
+		D6FC15A81F2FF0EF0077C5EA /* Weather.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC15A71F2FF0EF0077C5EA /* Weather.m */; };
+		D6FC15AB1F2FF3B00077C5EA /* Temprature.m in Sources */ = {isa = PBXBuildFile; fileRef = D6FC15AA1F2FF3B00077C5EA /* Temprature.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +30,14 @@
 		D6FC158F1F2F93CB0077C5EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FC15921F2F93CB0077C5EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6FC15941F2F93CB0077C5EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D6FC159E1F2F99210077C5EA /* WeatherBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherBuilder.h; sourceTree = "<group>"; };
-		D6FC159F1F2F99210077C5EA /* WeatherBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherBuilder.m; sourceTree = "<group>"; };
+		D6FC159E1F2F99210077C5EA /* WeatherNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherNetworkManager.h; sourceTree = "<group>"; };
+		D6FC159F1F2F99210077C5EA /* WeatherNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherNetworkManager.m; sourceTree = "<group>"; };
+		D6FC15A31F2FEEDE0077C5EA /* WeatherBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherBuilder.h; sourceTree = "<group>"; };
+		D6FC15A41F2FEEDE0077C5EA /* WeatherBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherBuilder.m; sourceTree = "<group>"; };
+		D6FC15A61F2FF0EF0077C5EA /* Weather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weather.h; sourceTree = "<group>"; };
+		D6FC15A71F2FF0EF0077C5EA /* Weather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weather.m; sourceTree = "<group>"; };
+		D6FC15A91F2FF3B00077C5EA /* Temprature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Temprature.h; sourceTree = "<group>"; };
+		D6FC15AA1F2FF3B00077C5EA /* Temprature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Temprature.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +70,12 @@
 		D6FC15821F2F93CB0077C5EA /* WeatherMonitor */ = {
 			isa = PBXGroup;
 			children = (
-				D6FC159D1F2F94580077C5EA /* Network Manager */,
-				D6FC159C1F2F94420077C5EA /* Resources */,
-				D6FC159B1F2F942B0077C5EA /* ViewControllers */,
 				D6FC159A1F2F941B0077C5EA /* AppDelegate */,
+				D6FC159C1F2F94420077C5EA /* Resources */,
+				D6FC159D1F2F94580077C5EA /* NetworkManager */,
+				D6FC15A21F2FEE860077C5EA /* Builder */,
+				D6FC15A11F2FC9CA0077C5EA /* Model */,
+				D6FC159B1F2F942B0077C5EA /* ViewControllers */,
 				D6FC15831F2F93CB0077C5EA /* Supporting Files */,
 			);
 			path = WeatherMonitor;
@@ -107,13 +118,33 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		D6FC159D1F2F94580077C5EA /* Network Manager */ = {
+		D6FC159D1F2F94580077C5EA /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				D6FC159E1F2F99210077C5EA /* WeatherBuilder.h */,
-				D6FC159F1F2F99210077C5EA /* WeatherBuilder.m */,
+				D6FC159E1F2F99210077C5EA /* WeatherNetworkManager.h */,
+				D6FC159F1F2F99210077C5EA /* WeatherNetworkManager.m */,
 			);
-			name = "Network Manager";
+			name = NetworkManager;
+			sourceTree = "<group>";
+		};
+		D6FC15A11F2FC9CA0077C5EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D6FC15A61F2FF0EF0077C5EA /* Weather.h */,
+				D6FC15A71F2FF0EF0077C5EA /* Weather.m */,
+				D6FC15A91F2FF3B00077C5EA /* Temprature.h */,
+				D6FC15AA1F2FF3B00077C5EA /* Temprature.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D6FC15A21F2FEE860077C5EA /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				D6FC15A31F2FEEDE0077C5EA /* WeatherBuilder.h */,
+				D6FC15A41F2FEEDE0077C5EA /* WeatherBuilder.m */,
+			);
+			name = Builder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,9 +219,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6FC15AB1F2FF3B00077C5EA /* Temprature.m in Sources */,
+				D6FC15A81F2FF0EF0077C5EA /* Weather.m in Sources */,
 				D6FC158B1F2F93CB0077C5EA /* ViewController.m in Sources */,
+				D6FC15A51F2FEEDE0077C5EA /* WeatherBuilder.m in Sources */,
 				D6FC15881F2F93CB0077C5EA /* AppDelegate.m in Sources */,
-				D6FC15A01F2F99210077C5EA /* WeatherBuilder.m in Sources */,
+				D6FC15A01F2F99210077C5EA /* WeatherNetworkManager.m in Sources */,
 				D6FC15851F2F93CB0077C5EA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
